@@ -1,0 +1,40 @@
+# This pipeline explores using Concourse to poll for
+# Sinatra rubygem versions, and trigger Buildkite Build API.
+
+jobs:
+  - name: rubygem-sinatra
+    plan:
+      - {get: rubygem-sinatra, trigger: true}
+  - name: rubygem-rails
+    plan:
+      - {get: rubygem-rails, trigger: true}
+  - name: rubygem-httparty
+    plan:
+      - {get: rubygem-httparty, trigger: true}
+
+resources:
+  - name: rubygem-sinatra
+    type: rubygems
+    check_every: 60m
+    source:
+      gem: sinatra
+      api_key: ((rubygems-api-key))
+  - name: rubygem-rails
+    type: rubygems
+    check_every: 60m
+    source:
+      gem: rails
+      api_key: ((rubygems-api-key))
+  - name: rubygem-httparty
+    type: rubygems
+    check_every: 60m
+    source:
+      gem: httparty
+      api_key: ((rubygems-api-key))
+
+resource_types:
+  - name: rubygems
+    type: docker-image
+    source:
+      repository: resource/rubygems
+      # repository: drnic/concourse-resource-rubygems
