@@ -1,0 +1,11 @@
+# This pipeline contains steps that will update
+# this repo.
+steps:
+  - command: .buildkite/scripts/update-dependencies.sh
+    label: ":ruby:"
+    if: build.env("UPDATE_RUBY_VERSION")
+    plugins:
+      docker#v3.5.0:
+        image: "ruby:${UPDATE_RUBY_VERSION:-latest}"
+        environment:
+          - UPDATE_RUBY_VERSION
