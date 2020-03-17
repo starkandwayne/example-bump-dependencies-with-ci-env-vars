@@ -16,3 +16,6 @@ cat Gemfile
 echo "--- Bundle :ruby:"
 gem install bundler
 bundle install --verbose
+
+echo "--- Check :git: diff"
+git diff
