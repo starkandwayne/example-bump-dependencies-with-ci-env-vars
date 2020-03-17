@@ -19,3 +19,9 @@ bundle install --verbose
 
 echo "--- Check :git: diff"
 git diff
+
+cat <<EOS | buildkite-agent annotate --context git-diff
+\`\`\`term
+$(git diff)
+\`\`\
+EOS

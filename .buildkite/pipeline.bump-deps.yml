@@ -7,5 +7,6 @@ steps:
     plugins:
       docker#v3.5.0:
         image: "ruby:latest"
+        mount-buildkite-agent: true
         environment:
           - UPDATE_RUBYGEM_VERSION_SINATRA
