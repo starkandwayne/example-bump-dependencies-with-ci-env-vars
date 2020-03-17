@@ -3,9 +3,9 @@
 steps:
   - command: .buildkite/scripts/update-dependencies.sh
     label: ":ruby:"
-    if: build.env("UPDATE_RUBY_VERSION")
+    if: build.env("UPDATE_RUBYGEM_VERSION_SINATRA")
     plugins:
       docker#v3.5.0:
-        image: "ruby:${UPDATE_RUBY_VERSION:-latest}"
+        image: "ruby:latest"
         environment:
-          - UPDATE_RUBY_VERSION
+          - UPDATE_RUBYGEM_VERSION_SINATRA
