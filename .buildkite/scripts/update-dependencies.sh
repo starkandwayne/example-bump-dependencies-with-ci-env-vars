@@ -18,10 +18,10 @@ gem install bundler
 bundle install --verbose
 
 echo "--- Check :git: diff"
-git diff
+git --no-pager diff
 
 cat <<EOS | buildkite-agent annotate --context git-diff
 \`\`\`term
-$(git diff)
-\`\`\
+$(git --no-pager diff)
+\`\`\`
 EOS
