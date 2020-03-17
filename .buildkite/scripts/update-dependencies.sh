@@ -21,6 +21,8 @@ echo "--- Check :git: diff"
 git -c color.ui=always --no-pager diff
 
 cat <<EOS | buildkite-agent annotate --context git-diff
+Proposed changes:
+
 \`\`\`term
 $(git -c color.ui=always --no-pager diff)
 \`\`\`
